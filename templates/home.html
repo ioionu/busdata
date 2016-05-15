@@ -17,7 +17,7 @@
   	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(mymap);
 
-  fetch('http://localhost:5000/bus')
+  fetch('/bus')
   .then(function(data){
     return data.json()
   }).then(function(json){
