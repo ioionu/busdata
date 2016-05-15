@@ -3,12 +3,13 @@ from urllib2 import Request, urlopen
 from urllib import urlencode, quote_plus
 import base64
 import json
-import config
+#import config
+import os
 
 def getBusGeoJSON():
     # Create your consumer with the proper key/secret.
-    key=config.key
-    secret=config.secret
+    key=os.environ['oauthkey'] #config.key
+    secret=os.environ['oauthsecret'] #config.secret
 
     base64string = base64.encodestring('%s:%s' % (key, secret)).replace('\n','')
     authheader =  "Basic %s" % base64string
