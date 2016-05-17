@@ -13,5 +13,5 @@ def bus():
     return json.jsonify(**bus_geojson.getBusGeoJSON()) #getBusGeoJSON()
 
 if __name__ == "__main__":
-    application.debug = True
+    #application.debug = True
     application.run()
