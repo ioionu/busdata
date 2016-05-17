@@ -42,7 +42,14 @@ def getBusGeoJSON():
 
     for entity in feed.entity:
     #  if entity.HasField('trip_update'):
-        #print( entity.id, entity.vehicle.position.latitude, entity.vehicle.position.longitude )
+        #print( entity.vehicle.occupancy_status )
+        description = "Name: {}, Route: {}, Speed: {}, Congestion: {}, Seats: {}".format(
+            entity.vehicle.trip.trip_id,
+            entity.vehicle.trip.route_id,
+            entity.vehicle.position.speed,
+            entity.vehicle.congestion_level, #TODO: make human readable
+            entity.vehicle.occupancy_status #TODO: make human readable
+        )
         feature = {
             'type': 'Feature',
             'geometry': {
@@ -51,6 +58,9 @@ def getBusGeoJSON():
                     entity.vehicle.position.longitude,
                     entity.vehicle.position.latitude
                 ]
+            },
+            'properties': {
+                'description': description
             }
         }
         features.append(feature)

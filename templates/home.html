@@ -26,8 +26,12 @@
     }).then(function(json){
       //console.log("derp", json)
       mymap.removeLayer(busLayer);
-      busLayer = L.geoJson();
-      busLayer.addData(json).addTo(mymap);
+      busLayer = L.geoJson(json, {
+        onEachFeature: function(feature, layer) {
+          layer.bindPopup(feature.properties.description);
+        }
+      }).addTo(mymap);
+      //busLayer.addData(json).addTo(mymap);
       setTimeout(updateBusData, 10000);
     });
   }
